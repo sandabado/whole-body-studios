@@ -9,12 +9,15 @@ function IcosahedronMesh({ audioData }: { audioData?: Uint8Array }) {
   const meshRef = useRef<THREE.Mesh>(null);
   const matRef = useRef<THREE.MeshStandardMaterial>(null);
 
-  useFrame((state, delta) => {
+  useFrame((state) => {
     if (!meshRef.current) return;
 
-    // Slow camera orbit
-    state.camera.position.x += delta * 0.08;
-    state.camera.position.y += delta * 0.14;
+    // Slow, bounded camera orbit around the origin — never drifts away
+    const t = state.clock.elapsedTime;
+    state.camera.position.x = Math.sin(t * 0.05) * 2;
+    state.camera.position.y = Math.cos(t * 0.04) * 1;
+    state.camera.position.z = 8;
+    state.camera.lookAt(0, 0, 0);
 
     // Audio-reactive emissive
     if (matRef.current && audioData) {
@@ -25,7 +28,7 @@ function IcosahedronMesh({ audioData }: { audioData?: Uint8Array }) {
 
   return (
     <Float speed={1.1} floatIntensity={0.35}>
-      <mesh ref={meshRef} scale={2.2}>
+      <mesh ref={meshRef} position={[2.5, -1, -1]} scale={1.4}>
         <icosahedronGeometry args={[1, 0]} />
         <meshStandardMaterial
           ref={matRef}
@@ -98,7 +101,7 @@ export default function IcosahedronBackground({
   return (
     <div className="fixed inset-0 z-0 pointer-events-none">
       <Canvas
-        camera={{ fov: 48, position: [0, 0, 5] }}
+        camera={{ fov: 48, position: [0, 0, 8] }}
         gl={{ alpha: true, antialias: true }}
       >
         <ambientLight intensity={0.3} />
