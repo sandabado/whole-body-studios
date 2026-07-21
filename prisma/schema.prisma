@@ -1,0 +1,140 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum UserRole {
+  VISITOR
+  ARTIST
+  ADMIN
+  FOUNDER
+}
+
+model User {
+  id           String        @id @default(uuid())
+  email        String        @unique
+  passwordHash String?
+  firstName    String?
+  lastName     String?
+  role         UserRole      @default(VISITOR)
+  applications Application[]
+  projects     Project[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+enum ApplicationStage {
+  WRITING
+  RECORDING
+  RELEASED
+  TOURING
+}
+
+enum ApplicationStatus {
+  PENDING
+  REVIEWING
+  INVITED
+  DECLINED
+  PARTNER
+}
+
+model Application {
+  id             String            @id @default(uuid())
+  userId         String?
+  artistName     String
+  email          String
+  phone          String?
+  genre          String
+  stage          ApplicationStage
+  portfolioUrls  String[]
+  servicesNeeded String[]
+  whatTheyBuild  String?           @db.Text
+  whyStudios     String?           @db.Text
+  retainsIP      Boolean?
+  consent        Boolean           @default(false)
+  status         ApplicationStatus @default(PENDING)
+  calendlyUrl    String?
+  reviewedAt     DateTime?
+  createdAt      DateTime          @default(now())
+
+  user User? @relation(fields: [userId], references: [id])
+}
+
+enum ProjectType {
+  SINGLE
+  EP
+  ALBUM
+  FILM_SCORE
+  COMPILATION
+}
+
+enum ProjectStatus {
+  DEVELOPMENT
+  RECORDING
+  MIXING
+  MASTERING
+  RELEASING
+  RELEASED
+}
+
+model Project {
+  id            String        @id @default(uuid())
+  artistId      String
+  title         String
+  type          ProjectType
+  status        ProjectStatus @default(DEVELOPMENT)
+  releaseDate   DateTime?
+  assetUrl      String?
+  artworkUrl    String?
+  streamUrl     String?
+  syncEligible  Boolean       @default(true)
+  revenueTotal  Decimal       @default(0) @db.Decimal(10, 2)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  artist         User           @relation(fields: [artistId], references: [id])
+  revenueEntries RevenueEntry[]
+}
+
+enum RevenueSource {
+  SYNC
+  DISTRIBUTION
+  VINYL
+  SERVICE_FEE
+  STIPEND
+}
+
+model RevenueEntry {
+  id           String        @id @default(uuid())
+  projectId    String
+  amount       Decimal       @db.Decimal(10, 2)
+  source       RevenueSource
+  artistShare  Decimal       @db.Decimal(10, 2)
+  guildShare   Decimal       @db.Decimal(10, 2)
+  stipendShare Decimal       @db.Decimal(10, 2)
+  infraShare   Decimal       @db.Decimal(10, 2)
+  founderShare Decimal       @db.Decimal(10, 2)
+  createdAt    DateTime      @default(now())
+
+  project Project @relation(fields: [projectId], references: [id])
+}
+
+model StudioStatus {
+  id        String   @id @default(uuid())
+  status    String
+  location  String
+  updatedAt DateTime @default(now())
+}
+
+model TickerEntry {
+  id          String   @id @default(uuid())
+  text        String
+  isSystemLog Boolean  @default(false)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}

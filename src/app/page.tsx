@@ -1,65 +1,117 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import Link from "next/link";
+import { motion } from "framer-motion";
+import Ticker from "@/components/Ticker";
+import FeedFirstBlock from "@/components/FeedFirstBlock";
+import FeedFirstCalculator from "@/components/FeedFirstCalculator";
+import ServiceGrid from "@/components/ServiceGrid";
+import WhyPartner from "@/components/WhyPartner";
+import CeremonialEntrance from "@/components/CeremonialEntrance";
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <>
+      <CeremonialEntrance />
+
+      {/* Hero */}
+      <section className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 pt-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 3.5, duration: 1 }}
+          className="text-center max-w-3xl"
+        >
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl text-bone leading-tight">
+            INFRASTRUCTURE, NOT A LABEL.
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+
+          <p className="mt-4 font-mono text-sm text-water uppercase tracking-widest">
+            The shape that remembers.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+          <p className="mt-8 font-body text-base sm:text-lg text-ghost leading-relaxed max-w-2xl mx-auto">
+            Music is infrastructure — current and truth, never content.
+            Whole Body Studios provides production, distribution, and sync
+            licensing for artists who retain everything.
+          </p>
+
+          <p className="mt-4 font-body text-base sm:text-lg text-bone leading-relaxed">
+            We earn on services rendered — never on ownership.
+            <br />
+            Song finds every crack.
+          </p>
+
+          <p className="mt-6 font-display text-lg text-water">
+            The artist eats first. Always.
+          </p>
+
+          {/* CTAs */}
+          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/apply"
+              className="px-8 py-3 bg-water text-void font-mono text-sm uppercase tracking-widest hover:shadow-water-glow-lg transition-shadow duration-200"
+            >
+              Apply for Partnership →
+            </Link>
+            <Link
+              href="/services"
+              className="px-8 py-3 border border-mercury text-bone font-mono text-sm uppercase tracking-widest hover:border-water hover:text-water transition-colors duration-200"
+            >
+              View Services
+            </Link>
+          </div>
+
+          {/* Trust line */}
+          <p className="mt-12 font-mono text-xs text-water uppercase tracking-widest">
+            FEED FIRST · ARTIST-OWNED · ZERO EXTRACTION
+          </p>
+        </motion.div>
+      </section>
+
+      {/* Ticker */}
+      <Ticker />
+
+      {/* Services Grid */}
+      <ServiceGrid />
+
+      {/* Why Partner */}
+      <WhyPartner />
+
+      {/* Feed First Algorithm */}
+      <FeedFirstBlock />
+
+      {/* Feed First Calculator */}
+      <FeedFirstCalculator />
+
+      {/* Apply CTA */}
+      <section className="relative z-10 py-24 px-4 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8 }}
+          className="max-w-2xl mx-auto"
+        >
+          <h2 className="font-display text-3xl text-bone mb-6">
+            READY TO PARTNER?
+          </h2>
+          <p className="font-body text-ghost leading-relaxed mb-8">
+            Artists who carry the frequency apply here. We review every
+            submission within 14 days. If it resonates, we reach out.
+          </p>
+          <Link
+            href="/apply"
+            className="inline-block px-8 py-3 bg-water text-void font-mono text-sm uppercase tracking-widest hover:shadow-water-glow-lg transition-shadow duration-200"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            Start Application →
+          </Link>
+          <div className="mt-8 font-mono text-xs text-ghost space-y-1">
+            <p>Email: partnership@wholebody.studios</p>
+            <p>Sync submissions: sync@wholebody.studios</p>
+          </div>
+        </motion.div>
+      </section>
+    </>
   );
 }
