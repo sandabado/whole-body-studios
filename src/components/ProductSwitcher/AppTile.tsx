@@ -45,9 +45,9 @@ export default function AppTile({ app }: AppTileProps) {
     >
       <HUDCorners color={cornerColor} />
 
-      {/* Glyph */}
-      <span
-        className="text-3xl leading-none"
+      <app.icon
+        className="w-7 h-7"
+        strokeWidth={1.5}
         style={{
           color: isHere
             ? "var(--color-water)"
@@ -55,20 +55,13 @@ export default function AppTile({ app }: AppTileProps) {
               ? "var(--color-ghost)"
               : "var(--color-bone)",
         }}
-      >
-        {app.icon}
-      </span>
+      />
 
       {/* Product name */}
       <span
         className={`font-display text-xs uppercase tracking-wider ${textColor}`}
       >
         {app.name}
-      </span>
-
-      {/* Element label */}
-      <span className="font-mono text-[10px] uppercase tracking-widest text-ghost">
-        {app.element}
       </span>
 
       {/* Status badge */}

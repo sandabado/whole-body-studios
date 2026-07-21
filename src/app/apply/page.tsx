@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import HUDCorners from "@/components/ProductSwitcher/HUDCorners";
 
 const schema = z.object({
@@ -44,7 +44,6 @@ const serviceOptions = [
 
 export default function ApplyPage() {
   const [submitted, setSubmitted] = useState(false);
-  const [gatewayVisible, setGatewayVisible] = useState(true);
   const [loading, setLoading] = useState(false);
 
   const {
@@ -95,16 +94,8 @@ export default function ApplyPage() {
             Application Received
           </h1>
           <p className="font-body text-ghost leading-relaxed text-center mb-8">
-            We review every submission within 14 days. If your work carries
-            the{" "}
-            <motion.span
-              animate={{ opacity: [1, 0.5, 1] }}
-              transition={{ duration: 3, repeat: Infinity }}
-              className="text-water"
-            >
-              frequency
-            </motion.span>
-            , we&apos;ll reach out.
+            We review every submission within 14 days. If it&apos;s a fit,
+            we&apos;ll reach out.
           </p>
           <div className="text-center">
             <Link
@@ -121,60 +112,21 @@ export default function ApplyPage() {
 
   return (
     <div className="pt-16 min-h-screen flex flex-col">
-      {/* Gateway overlay */}
-      <AnimatePresence>
-        {gatewayVisible && (
-          <motion.div
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1 }}
-            className="fixed inset-0 z-[150] bg-void flex items-center justify-center"
-          >
-            <div className="text-center space-y-4">
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                className="font-display text-2xl text-water"
-              >
-                NOT EVERYONE WHO APPLIES IS CHOSEN.
-              </motion.div>
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.3 }}
-                className="font-display text-xl text-bone"
-              >
-                WE DON&apos;T TAKE EVERYONE.
-              </motion.div>
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.6 }}
-                className="font-mono text-sm text-water uppercase tracking-widest"
-              >
-                WE TAKE ARTISTS WHO CARRY THE FREQUENCY.
-              </motion.div>
-            </div>
-            {/* Manual skip for impatient users */}
-            <button
-              onClick={() => setGatewayVisible(false)}
-              className="absolute bottom-16 font-mono text-xs text-ghost hover:text-water transition-colors"
-            >
-              Skip gateway
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       {/* Form container */}
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="relative z-10 flex-1 py-12 px-4"
       >
         <div className="max-w-2xl mx-auto space-y-8">
-          <h1 className="font-display text-3xl text-bone text-center">
-            Partnership Application
-          </h1>
+          <div className="text-center">
+            <h1 className="font-display text-3xl text-bone">
+              Partnership Application
+            </h1>
+            <p className="mt-3 font-body text-sm text-ghost">
+              We review every application carefully. This isn&apos;t the
+              right fit for every artist, and that&apos;s okay.
+            </p>
+          </div>
 
           {/* Artist Name */}
           <div>
@@ -489,7 +441,7 @@ export default function ApplyPage() {
               disabled={loading}
               className="w-full px-8 py-4 bg-water text-void font-mono text-sm uppercase tracking-widest hover:shadow-water-glow-lg transition-shadow duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {loading ? "TRANSMITTING..." : "TRANSMIT"}
+              {loading ? "SUBMITTING..." : "SUBMIT APPLICATION"}
             </button>
           </div>
         </div>

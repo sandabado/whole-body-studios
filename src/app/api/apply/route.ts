@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
               <h1 style="color: #2BA8A0;">Application Received</h1>
               <p>Thank you for applying to partner with Whole Body Studios.</p>
               <p>We review every submission within <strong>14 days</strong>.</p>
-              <p>If your work carries the frequency, we'll reach out.</p>
+              <p>If it's a fit, we'll reach out.</p>
               <hr style="border-color: #2A2A38; margin: 30px 0;" />
               <p style="color: #8888A0; font-size: 12px;">
                 wholebody.studios · The artist eats first. Always.

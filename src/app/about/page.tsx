@@ -14,11 +14,12 @@ export default function AboutPage() {
           animate={{ opacity: 1, y: 0 }}
           className="font-display text-3xl sm:text-4xl text-bone mb-4"
         >
-          WHO HOLDS THE FREQUENCY
+          ABOUT WHOLE BODY STUDIOS
         </motion.h1>
         <p className="max-w-2xl mx-auto font-body text-ghost leading-relaxed">
-          Studios is the Water element of the Constellation. Music and film
-          are infrastructure — current and truth, never content.
+          Music and film are infrastructure, not content — production,
+          distribution, and sync licensing for artists who keep what they
+          make.
         </p>
       </section>
 

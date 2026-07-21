@@ -7,39 +7,29 @@ import FeedFirstBlock from "@/components/FeedFirstBlock";
 import FeedFirstCalculator from "@/components/FeedFirstCalculator";
 import ServiceGrid from "@/components/ServiceGrid";
 import WhyPartner from "@/components/WhyPartner";
-import CeremonialEntrance from "@/components/CeremonialEntrance";
 
 export default function HomePage() {
   return (
     <>
-      <CeremonialEntrance />
-
       {/* Hero */}
       <section className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 pt-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 3.5, duration: 1 }}
+          transition={{ delay: 0.1, duration: 0.6 }}
           className="text-center max-w-3xl"
         >
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl text-bone leading-tight">
             INFRASTRUCTURE, NOT A LABEL.
           </h1>
 
-          <p className="mt-4 font-mono text-sm text-water uppercase tracking-widest">
-            The shape that remembers.
-          </p>
-
           <p className="mt-8 font-body text-base sm:text-lg text-ghost leading-relaxed max-w-2xl mx-auto">
-            Music is infrastructure — current and truth, never content.
             Whole Body Studios provides production, distribution, and sync
             licensing for artists who retain everything.
           </p>
 
           <p className="mt-4 font-body text-base sm:text-lg text-bone leading-relaxed">
             We earn on services rendered — never on ownership.
-            <br />
-            Song finds every crack.
           </p>
 
           <p className="mt-6 font-display text-lg text-water">
@@ -97,8 +87,8 @@ export default function HomePage() {
             READY TO PARTNER?
           </h2>
           <p className="font-body text-ghost leading-relaxed mb-8">
-            Artists who carry the frequency apply here. We review every
-            submission within 14 days. If it resonates, we reach out.
+            We review every submission within 14 days. If it&apos;s a fit,
+            we reach out.
           </p>
           <Link
             href="/apply"

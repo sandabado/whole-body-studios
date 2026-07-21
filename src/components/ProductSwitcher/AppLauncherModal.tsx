@@ -62,16 +62,16 @@ export default function AppLauncherModal({
         ref={modalRef}
         role="dialog"
         aria-modal="true"
-        aria-labelledby="constellation-title"
+        aria-labelledby="switcher-title"
         className="relative z-10 w-full max-w-4xl p-6 sm:p-8"
       >
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <h2
-            id="constellation-title"
+            id="switcher-title"
             className="font-display text-xl text-bone tracking-wide text-center flex-1"
           >
-            CONSTELLATION
+            WHOLE BODY
           </h2>
           <div className="font-mono text-xs text-water uppercase tracking-widest">
             SYSTEM STATUS: ONLINE ●
@@ -80,7 +80,7 @@ export default function AppLauncherModal({
 
         <div className="border-t border-mercury mb-6" />
 
-        {/* Element grid */}
+        {/* App grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 justify-items-center">
           {constellationApps.map((app, i) => (
             <div
@@ -106,18 +106,13 @@ export default function AppLauncherModal({
             <AppTile app={investorPortal} />
           </div>
         </div>
-
-        {/* Footer */}
-        <p className="mt-8 text-center font-mono text-xs text-ghost">
-          So It Is Built. So It Holds. So It Is. 🍀
-        </p>
       </div>
 
       {/* Close button (mobile) */}
       <button
         onClick={onClose}
         className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center text-ghost hover:text-water transition-colors text-2xl"
-        aria-label="Close constellation overlay"
+        aria-label="Close product switcher"
       >
         ✕
       </button>

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Cinzel, Inter, DM_Mono } from "next/font/google";
 import "./globals.css";
-import IcosahedronBackground from "@/components/IcosahedronBackground";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -57,7 +56,6 @@ export default function RootLayout({
       className={`${cinzel.variable} ${inter.variable} ${dmMono.variable}`}
     >
       <body className="bg-void text-bone font-body antialiased">
-        <IcosahedronBackground />
         <div className="relative z-10 flex flex-col min-h-screen">
           <Navbar />
           <main className="flex-1">{children}</main>
